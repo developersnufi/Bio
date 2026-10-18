@@ -1,2 +1,2 @@
 # Bio
-my bio lol
+my bio lol or smth like that.
