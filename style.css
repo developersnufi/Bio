@@ -39,7 +39,7 @@ a { color: inherit; }
 .page-shell {
   position: relative;
   z-index: 1;
-  width: min(1160px, calc(100% - 64px));
+  width: min(1320px, calc(100% - 80px));
   margin: 0 auto;
 }
 
@@ -69,7 +69,10 @@ a { color: inherit; }
   border-radius: 50%;
   background: var(--green);
   font: 500 12px var(--mono);
+  transition: transform 350ms cubic-bezier(.2, .8, .2, 1);
 }
+
+.wordmark:hover .mark { transform: rotate(18deg) scale(1.08); }
 
 .nav-links {
   display: flex;
@@ -89,7 +92,7 @@ a { color: inherit; }
 
 .hero {
   display: grid;
-  min-height: min(690px, calc(100svh - 77px));
+  min-height: min(780px, calc(100svh - 77px));
   align-content: center;
   padding: 88px 0 100px;
   position: relative;
@@ -115,12 +118,13 @@ a { color: inherit; }
   border-radius: 50%;
   background: #6fbd45;
   box-shadow: 0 0 0 4px rgb(111 189 69 / 14%);
+  animation: status-pulse 2.4s ease-in-out infinite;
 }
 
 h1 {
-  max-width: 920px;
+  max-width: 1100px;
   margin: 26px 0 24px;
-  font-size: clamp(54px, 8vw, 104px);
+  font-size: clamp(64px, 8.5vw, 120px);
   line-height: .99;
   letter-spacing: 0;
   font-weight: 600;
@@ -145,10 +149,10 @@ h1 .name-accent::after {
 }
 
 .hero-copy {
-  max-width: 540px;
+  max-width: 620px;
   margin: 0;
   color: #4b564d;
-  font-size: 17px;
+  font-size: 18px;
   line-height: 1.8;
   animation: arrive 700ms 220ms both;
 }
@@ -179,6 +183,8 @@ h1 .name-accent::after {
 
 .primary-link:hover { background: var(--deep-green); transform: translateY(-2px); }
 .primary-link span { color: var(--green); font-size: 16px; }
+.primary-link span { transition: transform 180ms ease; }
+.primary-link:hover span { transform: translate(3px, 3px); }
 
 .text-link {
   color: var(--ink);
@@ -205,10 +211,20 @@ h1 .name-accent::after {
 .content-section {
   display: grid;
   grid-template-columns: 1fr 2fr;
-  gap: 54px;
-  padding: 64px 0 72px;
+  gap: 72px;
+  padding: 82px 0 92px;
   border-top: 1px solid var(--line);
-  animation: arrive 650ms both;
+}
+
+.js-reveal .content-section {
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity 700ms ease, transform 700ms cubic-bezier(.2, .7, .2, 1);
+}
+
+.js-reveal .content-section.is-visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .section-index { color: var(--muted); }
@@ -216,7 +232,7 @@ h1 .name-accent::after {
 
 h2 {
   margin: -7px 0 20px;
-  font-size: clamp(28px, 4vw, 42px);
+  font-size: clamp(32px, 4vw, 48px);
   line-height: 1.12;
   letter-spacing: 0;
   font-weight: 600;
@@ -226,7 +242,7 @@ h2 {
   max-width: 650px;
   margin: 0;
   color: #4b564d;
-  font-size: 15px;
+  font-size: 16px;
   line-height: 1.9;
 }
 
@@ -309,16 +325,21 @@ footer a { color: var(--ink); text-decoration: none; }
   to { opacity: 1; transform: translateY(0); }
 }
 
+@keyframes status-pulse {
+  0%, 100% { box-shadow: 0 0 0 4px rgb(111 189 69 / 14%); }
+  50% { box-shadow: 0 0 0 8px rgb(111 189 69 / 5%); }
+}
+
 @media (max-width: 680px) {
-  .page-shell { width: min(100% - 40px, 520px); }
+  .page-shell { width: min(100% - 40px, 560px); }
   .topbar { min-height: 66px; }
   .nav-links { gap: 18px; }
   .nav-links a { font-size: 11px; }
-  .hero { min-height: min(690px, calc(100svh - 67px)); padding: 76px 0 90px; }
+  .hero { min-height: min(740px, calc(100svh - 67px)); padding: 76px 0 90px; }
   h1 { font-size: clamp(48px, 13vw, 76px); }
   .hero-copy { max-width: 460px; font-size: 15px; }
   .scroll-note { bottom: 20px; }
-  .content-section { grid-template-columns: 1fr; gap: 28px; padding: 48px 0 54px; }
+  .content-section { grid-template-columns: 1fr; gap: 32px; padding: 58px 0 66px; }
   h2 { margin-top: -3px; }
   .social-grid { grid-template-columns: 1fr; }
   .social-link:nth-child(odd) { margin-right: 0; }
@@ -334,4 +355,5 @@ footer a { color: var(--ink); text-decoration: none; }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+  .js-reveal .content-section { opacity: 1; transform: none; }
 }
