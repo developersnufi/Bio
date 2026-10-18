@@ -39,7 +39,7 @@ a { color: inherit; }
 .page-shell {
   position: relative;
   z-index: 1;
-  width: min(1320px, calc(100% - 80px));
+  width: min(1440px, calc(100% - 88px));
   margin: 0 auto;
 }
 
@@ -47,7 +47,7 @@ a { color: inherit; }
   display: flex;
   align-items: center;
   justify-content: space-between;
-  min-height: 76px;
+  min-height: 88px;
   border-bottom: 1px solid var(--line);
   animation: arrive 650ms both;
 }
@@ -92,7 +92,7 @@ a { color: inherit; }
 
 .hero {
   display: grid;
-  min-height: min(780px, calc(100svh - 77px));
+  min-height: min(880px, calc(100svh - 89px));
   align-content: center;
   padding: 88px 0 100px;
   position: relative;
@@ -122,9 +122,9 @@ a { color: inherit; }
 }
 
 h1 {
-  max-width: 1100px;
+  max-width: 1280px;
   margin: 26px 0 24px;
-  font-size: clamp(64px, 8.5vw, 120px);
+  font-size: clamp(72px, 9vw, 138px);
   line-height: .99;
   letter-spacing: 0;
   font-weight: 600;
@@ -149,10 +149,10 @@ h1 .name-accent::after {
 }
 
 .hero-copy {
-  max-width: 620px;
+  max-width: 700px;
   margin: 0;
   color: #4b564d;
-  font-size: 18px;
+  font-size: 20px;
   line-height: 1.8;
   animation: arrive 700ms 220ms both;
 }
@@ -171,11 +171,11 @@ h1 .name-accent::after {
   display: inline-flex;
   align-items: center;
   gap: 22px;
-  min-height: 48px;
-  padding: 0 18px;
+  min-height: 56px;
+  padding: 0 22px;
   background: var(--ink);
   color: var(--paper);
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 700;
   text-decoration: none;
   transition: background 180ms ease, transform 180ms ease;
@@ -211,8 +211,8 @@ h1 .name-accent::after {
 .content-section {
   display: grid;
   grid-template-columns: 1fr 2fr;
-  gap: 72px;
-  padding: 82px 0 92px;
+  gap: 96px;
+  padding: 104px 0 116px;
   border-top: 1px solid var(--line);
 }
 
@@ -232,7 +232,7 @@ h1 .name-accent::after {
 
 h2 {
   margin: -7px 0 20px;
-  font-size: clamp(32px, 4vw, 48px);
+  font-size: clamp(38px, 4.4vw, 58px);
   line-height: 1.12;
   letter-spacing: 0;
   font-weight: 600;
@@ -242,7 +242,7 @@ h2 {
   max-width: 650px;
   margin: 0;
   color: #4b564d;
-  font-size: 16px;
+  font-size: 18px;
   line-height: 1.9;
 }
 
@@ -257,7 +257,7 @@ h2 {
   padding: 17px 0;
   border-top: 1px solid var(--line);
   color: #4b564d;
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1.75;
 }
 
@@ -335,11 +335,11 @@ footer a { color: var(--ink); text-decoration: none; }
   .topbar { min-height: 66px; }
   .nav-links { gap: 18px; }
   .nav-links a { font-size: 11px; }
-  .hero { min-height: min(740px, calc(100svh - 67px)); padding: 76px 0 90px; }
+  .hero { min-height: min(780px, calc(100svh - 67px)); padding: 76px 0 90px; }
   h1 { font-size: clamp(48px, 13vw, 76px); }
   .hero-copy { max-width: 460px; font-size: 15px; }
   .scroll-note { bottom: 20px; }
-  .content-section { grid-template-columns: 1fr; gap: 32px; padding: 58px 0 66px; }
+  .content-section { grid-template-columns: 1fr; gap: 36px; padding: 68px 0 76px; }
   h2 { margin-top: -3px; }
   .social-grid { grid-template-columns: 1fr; }
   .social-link:nth-child(odd) { margin-right: 0; }

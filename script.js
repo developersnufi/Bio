@@ -1,9 +1,9 @@
 (() => {
   const canvas = document.querySelector(".dot-field");
   const context = canvas.getContext("2d");
-  const pointer = { x: -1000, y: -1000 };
+  const pointer = { x: -1000, y: -1000, targetX: -1000, targetY: -1000 };
   const motionPreference = window.matchMedia("(prefers-reduced-motion: reduce)");
-  const spacing = 28;
+  const spacing = 25;
   let width = 0;
   let height = 0;
   let dots = [];
@@ -28,18 +28,21 @@
 
   function draw(timestamp) {
     context.clearRect(0, 0, width, height);
+    pointer.x += (pointer.targetX - pointer.x) * 0.14;
+    pointer.y += (pointer.targetY - pointer.y) * 0.14;
     const active = pointer.x >= 0;
     const time = reducedMotion ? 0 : timestamp * 0.001;
     for (const dot of dots) {
       const dx = dot.x - pointer.x;
       const dy = dot.y - pointer.y;
       const distance = Math.sqrt(dx * dx + dy * dy);
-      const influence = active ? Math.max(0, 1 - distance / 190) : 0;
-      const wave = reducedMotion ? 0 : Math.sin(dot.x * 0.012 + time * 1.1) * 3.5 + Math.cos(dot.y * 0.016 - time * 0.8) * 2.5;
-      const drift = reducedMotion ? 0 : Math.sin(dot.y * 0.014 + time * 0.65) * 2;
-      const radius = 1.2 + influence * 1.2;
+      const influence = active ? Math.max(0, 1 - distance / 250) : 0;
+      const wave = reducedMotion ? 0 : Math.sin(dot.x * 0.012 + time * 1.1) * 4.5 + Math.cos(dot.y * 0.016 - time * 0.8) * 3;
+      const ripple = active && !reducedMotion ? Math.sin(distance * 0.045 - time * 4) * influence : 0;
+      const drift = reducedMotion ? 0 : Math.sin(dot.y * 0.014 + time * 0.65) * 2.5;
+      const radius = 1.2 + influence * 1.2 + Math.max(0, ripple) * 1.8;
       context.beginPath();
-      context.arc(dot.x + drift, dot.y + wave, radius, 0, Math.PI * 2);
+      context.arc(dot.x + drift, dot.y + wave + ripple * 10, radius, 0, Math.PI * 2);
       if (influence > 0) {
         const hue = (timestamp * 0.035 + dot.x * 0.16 + dot.y * 0.12) % 360;
         context.fillStyle = `hsla(${hue}, 95%, 55%, ${0.12 + influence * 0.78})`;
@@ -76,13 +79,13 @@
   }
 
   window.addEventListener("pointermove", (event) => {
-    pointer.x = event.clientX;
-    pointer.y = event.clientY;
+    pointer.targetX = event.clientX;
+    pointer.targetY = event.clientY;
     scheduleDraw();
   }, { passive: true });
   window.addEventListener("pointerleave", () => {
-    pointer.x = -1000;
-    pointer.y = -1000;
+    pointer.targetX = -1000;
+    pointer.targetY = -1000;
     scheduleDraw();
   });
   window.addEventListener("resize", resize, { passive: true });
