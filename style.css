@@ -6,10 +6,8 @@
   --line: #d7ddd7;
   --accent: #3d6848;
   --body-copy: #4f5b52;
-  --ambient-a: #8cae8c;
-  --ambient-b: #8baebb;
-  --ambient-c: #d3b27e;
   --name-gradient: linear-gradient(108deg, #315b40 0%, #427b71 54%, #657c90 100%);
+  --photo-overlay: linear-gradient(90deg, rgb(247 248 244 / 90%) 0%, rgb(247 248 244 / 78%) 46%, rgb(247 248 244 / 54%) 100%);
   --mono: "DM Mono", "Courier New", monospace;
   --sans: "Archivo", "Trebuchet MS", sans-serif;
 }
@@ -22,10 +20,8 @@
   --line: #38423a;
   --accent: #a6c596;
   --body-copy: #c1cbc2;
-  --ambient-a: #4d8962;
-  --ambient-b: #47758a;
-  --ambient-c: #a17d4f;
   --name-gradient: linear-gradient(108deg, #a4d5a5 0%, #80c5b8 54%, #a7c3df 100%);
+  --photo-overlay: linear-gradient(90deg, rgb(21 26 22 / 88%) 0%, rgb(21 26 22 / 76%) 46%, rgb(21 26 22 / 56%) 100%);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -37,10 +33,8 @@
     --line: #38423a;
     --accent: #a6c596;
     --body-copy: #c1cbc2;
-    --ambient-a: #4d8962;
-    --ambient-b: #47758a;
-    --ambient-c: #a17d4f;
     --name-gradient: linear-gradient(108deg, #a4d5a5 0%, #80c5b8 54%, #a7c3df 100%);
+    --photo-overlay: linear-gradient(90deg, rgb(21 26 22 / 88%) 0%, rgb(21 26 22 / 76%) 46%, rgb(21 26 22 / 56%) 100%);
   }
 }
 
@@ -146,19 +140,14 @@ a { color: inherit; }
   content: "";
   position: absolute;
   z-index: -1;
+  inset: -12px;
   pointer-events: none;
-  background:
-    linear-gradient(128deg, transparent 12%, color-mix(in srgb, var(--ambient-a) 62%, transparent) 42%, transparent 70%),
-    linear-gradient(34deg, transparent 18%, color-mix(in srgb, var(--ambient-b) 56%, transparent) 55%, transparent 82%),
-    linear-gradient(162deg, transparent 15%, color-mix(in srgb, var(--ambient-c) 46%, transparent) 58%, transparent 86%);
-  filter: blur(58px) saturate(120%);
-  mask-image: linear-gradient(90deg, transparent 3%, #000 38%, #000 83%, transparent);
+  background: var(--photo-overlay), url("hero-background.jpg") center 48% / cover;
+  filter: blur(7px);
 }
 
 .hero::before {
-  inset: 7% -9% 6% 34%;
-  opacity: .58;
-  transform: skewX(-8deg);
+  opacity: .86;
 }
 
 .page-heading {
@@ -170,9 +159,7 @@ a { color: inherit; }
 }
 
 .page-heading::before {
-  inset: 0 -12% 0 45%;
-  opacity: .44;
-  transform: skewX(-8deg);
+  opacity: .82;
 }
 
 .eyebrow, .section-index {
@@ -194,6 +181,14 @@ a { color: inherit; }
   background: var(--accent);
 }
 
+h1, h2 {
+  background: var(--name-gradient);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
 h1 {
   max-width: 1380px;
   margin: 30px 0;
@@ -203,11 +198,7 @@ h1 {
 }
 
 .name-accent {
-  background: var(--name-gradient);
-  background-clip: text;
-  -webkit-background-clip: text;
-  color: transparent;
-  -webkit-text-fill-color: transparent;
+  color: inherit;
 }
 
 .hero-copy {
