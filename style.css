@@ -370,6 +370,8 @@ h2 {
 
 .links-section { border-top: 1px solid var(--line); }
 .page-endnote { margin: 28px 0 0; color: var(--muted); font: 400 12px var(--mono); }
+.contact-email { color: var(--accent); text-underline-offset: 4px; overflow-wrap: anywhere; }
+.contact-cta { margin-top: 28px; }
 
 footer {
   display: flex;
