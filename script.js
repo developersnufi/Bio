@@ -16,7 +16,6 @@
     try {
       window.localStorage.setItem(storageKey, theme);
     } catch {
-      // The page still works when storage is unavailable.
     }
   }
 

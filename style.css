@@ -7,7 +7,10 @@
   --accent: #3d6848;
   --body-copy: #4f5b52;
   --name-gradient: linear-gradient(108deg, #315b40 0%, #427b71 54%, #657c90 100%);
-  --photo-overlay: linear-gradient(rgb(247 248 244 / 72%), rgb(247 248 244 / 72%));
+  --backdrop-wash: linear-gradient(rgb(247 248 244 / 76%), rgb(247 248 244 / 76%));
+  --ambient-a: #b7d1b3;
+  --ambient-b: #a9c8d6;
+  --ambient-c: #ddc69f;
   --mono: "DM Mono", "Courier New", monospace;
   --sans: "Archivo", "Trebuchet MS", sans-serif;
 }
@@ -21,7 +24,10 @@
   --accent: #a6c596;
   --body-copy: #c1cbc2;
   --name-gradient: linear-gradient(108deg, #a4d5a5 0%, #80c5b8 54%, #a7c3df 100%);
-  --photo-overlay: linear-gradient(rgb(21 26 22 / 78%), rgb(21 26 22 / 78%));
+  --backdrop-wash: linear-gradient(rgb(21 26 22 / 70%), rgb(21 26 22 / 70%));
+  --ambient-a: #3b6546;
+  --ambient-b: #355d68;
+  --ambient-c: #675239;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -34,7 +40,10 @@
     --accent: #a6c596;
     --body-copy: #c1cbc2;
     --name-gradient: linear-gradient(108deg, #a4d5a5 0%, #80c5b8 54%, #a7c3df 100%);
-    --photo-overlay: linear-gradient(rgb(21 26 22 / 78%), rgb(21 26 22 / 78%));
+    --backdrop-wash: linear-gradient(rgb(21 26 22 / 70%), rgb(21 26 22 / 70%));
+    --ambient-a: #3b6546;
+    --ambient-b: #355d68;
+    --ambient-c: #675239;
   }
 }
 
@@ -64,9 +73,14 @@ body::before {
   z-index: -1;
   inset: -14px;
   pointer-events: none;
-  background: var(--photo-overlay), url("forest-background.jpg") center / cover no-repeat;
-  filter: blur(9px);
-  transform: scale(1.02);
+  background:
+    var(--backdrop-wash),
+    linear-gradient(128deg, transparent 5%, var(--ambient-a) 35% 52%, transparent 78%),
+    linear-gradient(34deg, transparent 12%, var(--ambient-b) 42% 60%, transparent 88%),
+    linear-gradient(162deg, transparent 18%, var(--ambient-c) 49% 62%, transparent 84%),
+    var(--paper);
+  filter: blur(76px);
+  transform: scale(1.08);
 }
 
 a { color: inherit; }
