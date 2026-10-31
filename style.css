@@ -6,6 +6,10 @@
   --line: #d7ddd7;
   --accent: #3d6848;
   --body-copy: #4f5b52;
+  --ambient-a: #8cae8c;
+  --ambient-b: #8baebb;
+  --ambient-c: #d3b27e;
+  --name-gradient: linear-gradient(108deg, #315b40 0%, #427b71 54%, #657c90 100%);
   --mono: "DM Mono", "Courier New", monospace;
   --sans: "Archivo", "Trebuchet MS", sans-serif;
 }
@@ -18,6 +22,10 @@
   --line: #38423a;
   --accent: #a6c596;
   --body-copy: #c1cbc2;
+  --ambient-a: #4d8962;
+  --ambient-b: #47758a;
+  --ambient-c: #a17d4f;
+  --name-gradient: linear-gradient(108deg, #a4d5a5 0%, #80c5b8 54%, #a7c3df 100%);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -29,6 +37,10 @@
     --line: #38423a;
     --accent: #a6c596;
     --body-copy: #c1cbc2;
+    --ambient-a: #4d8962;
+    --ambient-b: #47758a;
+    --ambient-c: #a17d4f;
+    --name-gradient: linear-gradient(108deg, #a4d5a5 0%, #80c5b8 54%, #a7c3df 100%);
   }
 }
 
@@ -121,15 +133,46 @@ a { color: inherit; }
 .theme-toggle:hover { border-color: var(--accent); color: var(--accent); }
 
 .hero {
+  position: relative;
+  isolation: isolate;
+  overflow: clip;
   display: grid;
   min-height: min(760px, calc(100svh - 89px));
   align-content: center;
   padding: 100px 0 120px;
 }
 
+.hero::before, .page-heading::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    linear-gradient(128deg, transparent 12%, color-mix(in srgb, var(--ambient-a) 62%, transparent) 42%, transparent 70%),
+    linear-gradient(34deg, transparent 18%, color-mix(in srgb, var(--ambient-b) 56%, transparent) 55%, transparent 82%),
+    linear-gradient(162deg, transparent 15%, color-mix(in srgb, var(--ambient-c) 46%, transparent) 58%, transparent 86%);
+  filter: blur(58px) saturate(120%);
+  mask-image: linear-gradient(90deg, transparent 3%, #000 38%, #000 83%, transparent);
+}
+
+.hero::before {
+  inset: 7% -9% 6% 34%;
+  opacity: .58;
+  transform: skewX(-8deg);
+}
+
 .page-heading {
+  position: relative;
+  isolation: isolate;
+  overflow: clip;
   padding: clamp(72px, 12vh, 132px) 0 92px;
   border-bottom: 1px solid var(--line);
+}
+
+.page-heading::before {
+  inset: 0 -12% 0 45%;
+  opacity: .44;
+  transform: skewX(-8deg);
 }
 
 .eyebrow, .section-index {
@@ -159,7 +202,13 @@ h1 {
   font-weight: 500;
 }
 
-.name-accent { color: var(--accent); }
+.name-accent {
+  background: var(--name-gradient);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
 
 .hero-copy {
   max-width: 720px;
