@@ -1,8 +1,10 @@
 (() => {
   const toggle = document.querySelector("[data-theme-toggle]");
+  const siteNote = document.querySelector("[data-site-note]");
   const themeColor = document.querySelector('meta[name="theme-color"]');
   const systemPreference = window.matchMedia("(prefers-color-scheme: dark)");
   const storageKey = "itzsnufi-theme";
+  const noteStorageKey = "itzsnufi-site-note-dismissed";
 
   function readPreference() {
     try {
@@ -35,6 +37,22 @@
     document.documentElement.dataset.theme = savedPreference;
   }
   updateThemeControls();
+
+  if (siteNote) {
+    let noteDismissed = false;
+    try {
+      noteDismissed = window.sessionStorage.getItem(noteStorageKey) === "true";
+    } catch {
+    }
+
+    if (!noteDismissed) siteNote.showModal();
+    siteNote.addEventListener("close", () => {
+      try {
+        window.sessionStorage.setItem(noteStorageKey, "true");
+      } catch {
+      }
+    });
+  }
 
   toggle.addEventListener("click", () => {
     const nextTheme = currentTheme() === "dark" ? "light" : "dark";

@@ -367,11 +367,28 @@ h2 {
 .social-static:hover { color: var(--ink); }
 .social-link .handle { overflow: hidden; color: var(--muted); font: 400 11px var(--mono); text-overflow: ellipsis; white-space: nowrap; }
 .social-link .arrow { flex: 0 0 auto; color: var(--accent); font-size: 17px; }
+.social-copy { display: grid; min-width: 0; gap: 6px; }
+.social-description { color: var(--body-copy); font-size: 13px; font-weight: 400; line-height: 1.6; }
 
 .links-section { border-top: 1px solid var(--line); }
 .page-endnote { margin: 28px 0 0; color: var(--muted); font: 400 12px var(--mono); }
 .contact-email { color: var(--accent); text-underline-offset: 4px; overflow-wrap: anywhere; }
 .contact-cta { margin-top: 28px; }
+
+.site-note {
+  width: min(520px, calc(100% - 32px));
+  max-width: none;
+  padding: clamp(24px, 6vw, 40px);
+  border: 1px solid var(--line);
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.site-note::backdrop { background: rgb(12 18 14 / 62%); }
+.site-note .eyebrow { margin: 0 0 20px; }
+.site-note h2 { margin: 0 0 18px; font-size: clamp(32px, 6vw, 44px); }
+.site-note > p:not(.eyebrow) { margin: 0; color: var(--body-copy); font-size: 16px; line-height: 1.7; }
+.site-note form { margin-top: 28px; }
 
 footer {
   display: flex;
